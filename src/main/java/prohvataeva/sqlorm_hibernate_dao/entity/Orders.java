@@ -1,26 +1,31 @@
 package prohvataeva.sqlorm_hibernate_dao.entity;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Table
-public class Persons {
-    @Column
+@Table(name = "ORDERS")
+public class Orders {
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @EmbeddedId
-    NameAndSurnameID nameAndSurnameID;
     @Column
-    private String phoneNumber;
+    private String date;
     @Column
-    private String cityOfLiving;
+    private String productName;
+    @Column
+    private int amount;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "customer_id")
+    private Customers customersId;
+
+
 
 
 
