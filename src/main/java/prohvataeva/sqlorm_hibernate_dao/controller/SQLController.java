@@ -10,8 +10,12 @@ import java.util.List;
 
 @RestController
 public class SQLController {
-    @Autowired
-    SQLRepository sqlRepository;
+    final SQLRepository sqlRepository;
+
+    public SQLController(SQLRepository sqlRepository) {
+        this.sqlRepository = sqlRepository;
+    }
+
     @GetMapping("/products/fetch-product")
     public List<String> getProductByName(@RequestParam(name = "name") String name) {
         return sqlRepository.getProductByName(name);

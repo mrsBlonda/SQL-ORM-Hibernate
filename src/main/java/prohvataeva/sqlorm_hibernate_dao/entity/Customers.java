@@ -13,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "CUSTOMERS")
+@Table()
 public class Customers {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,4 +29,11 @@ public class Customers {
     @OneToMany(mappedBy = "customersId", cascade = CascadeType.ALL)
     private List<Orders> ordersList;
 
+    public Customers(int id, String name, String surname, int age, String phoneNumber) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.age = age;
+        this.phoneNumber = phoneNumber;
+    }
 }
