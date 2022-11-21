@@ -20,6 +20,7 @@ public class CommandLineApp implements CommandLineRunner {
     @Override
     @Transactional
     public void run(String... args) throws Exception {
+
         NameAndSurnameID onePeople = new NameAndSurnameID("Anna", "Prohvataeva", 27);
         NameAndSurnameID twoPeople = new NameAndSurnameID("Maksim", "Prohvataev", 40);
         NameAndSurnameID threePeople = new NameAndSurnameID("Elena", "Volkova", 28);

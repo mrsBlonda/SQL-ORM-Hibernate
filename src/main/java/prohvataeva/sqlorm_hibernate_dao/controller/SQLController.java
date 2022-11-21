@@ -10,8 +10,11 @@ import java.util.List;
 
 @RestController
 public class SQLController {
-    @Autowired
-    SQLRepository sqlRepository;
+    final SQLRepository sqlRepository;
+
+    public SQLController(SQLRepository sqlRepository) {
+        this.sqlRepository = sqlRepository;
+    }
 
     @GetMapping("/persons/by-city")
     public List<Persons> getPersonsByCity(@RequestParam(name = "city") String city) {
