@@ -15,30 +15,37 @@ import javax.persistence.PersistenceContext;
 public class CommandLineApp implements CommandLineRunner {
 
     @PersistenceContext
-    EntityManager entityManager;
+    private EntityManager entityManager;
 
     @Override
     @Transactional
     public void run(String... args) throws Exception {
 
-        Customers customers1 = new Customers(1, "Anna", "Prohvataeva", 27, "12345");
-        Customers customers2 = new Customers(2, "Maksim", "Prohvataev", 40, "12345");
-        Customers customers3 = new Customers(3, "Alina", "Perepelova", 18, "12345");
-        Customers customers4 = new Customers(4, "Ekaterina", "Prohvataeva", 25, "12345");
-        Customers customers5 = new Customers(5, "Matvey", "Prohvataev", 30, "12345");
+        Customers customers1 = new Customers("Anna", "Prohvataeva", 27, "12345");
+        Customers customers2 = new Customers("Maksim", "Prohvataev", 40, "12345");
+        Customers customers3 = new Customers("Alina", "Perepelova", 18, "12345");
+        Customers customers4 = new Customers("Ekaterina", "Prohvataeva", 25, "12345");
+        Customers customers5 = new Customers("Matvey", "Prohvataev", 30, "12345");
 
-//        Orders orders1 = new Orders(1, "01.03.2022", "Cupcakes", 20, customers1);
-//        Orders orders2 = new Orders(2, "01.07.2022", "Milk", 20, customers5);
-//        Orders orders3 = new Orders(3, "01.08.2022", "Water", 20, customers5);
+        Orders orders1 = new Orders("01.03.2022", "Cupcakes", 20, customers1);
+        Orders orders2 = new Orders( "01.07.2022", "Milk", 20, customers5);
+        Orders orders3 = new Orders("01.08.2022", "Water", 20, customers5);
+        Orders orders4 = new Orders("01.08.2022", "Cake", 20, customers3);
+        Orders orders5 = new Orders("01.08.2022", "Soda", 20, customers3);
+        Orders orders6 = new Orders("01.08.2022", "Pasta", 20, customers3);
 
         entityManager.persist(customers1);
-//        entityManager.persist(customers2);
-//        entityManager.persist(customers3);
-//        entityManager.persist(customers4);
-//        entityManager.persist(customers5);
-//        entityManager.persist(orders1);
-//        entityManager.persist(orders2);
-//        entityManager.persist(orders3);
+        entityManager.persist(customers2);
+        entityManager.persist(customers3);
+        entityManager.persist(customers4);
+        entityManager.persist(customers5);
+        entityManager.persist(orders1);
+        entityManager.persist(orders2);
+        entityManager.persist(orders3);
+        entityManager.persist(orders4);
+        entityManager.persist(orders5);
+        entityManager.persist(orders6);
+
 
 
     }

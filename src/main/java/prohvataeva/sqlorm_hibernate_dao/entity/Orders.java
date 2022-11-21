@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Data
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -25,8 +25,19 @@ public class Orders {
     @JoinColumn(name = "customer_id")
     private Customers customersId;
 
+    public Orders(String date, String productName, int amount, Customers customersId) {
+        this.date = date;
+        this.productName = productName;
+        this.amount = amount;
+        this.customersId = customersId;
+    }
 
-
-
-
+    @Override
+    public String toString() {
+        return "Orders{" +
+                "date='" + date + '\'' +
+                ", productName='" + productName + '\'' +
+                ", amount=" + amount +
+                '}';
+    }
 }

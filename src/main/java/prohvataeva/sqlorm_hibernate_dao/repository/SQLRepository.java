@@ -2,6 +2,7 @@ package prohvataeva.sqlorm_hibernate_dao.repository;
 
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Repository;
+import prohvataeva.sqlorm_hibernate_dao.entity.Customers;
 import prohvataeva.sqlorm_hibernate_dao.entity.Orders;
 
 import javax.persistence.EntityManager;
@@ -18,21 +19,12 @@ import java.util.stream.Collectors;
 public class SQLRepository {
     @PersistenceContext
     EntityManager entityManager;
-
-
     public List<String> getProductByName(String name) {
-
-
-        var query = entityManager.createQuery(read("SelectProductOfName.sql"));
+        var query = entityManager.createQuery("select o.productName from Orders o where o.customersId.name=:name");
         query.setParameter("name", name);
-        List<Orders> ordersList = query.getResultList();
-        List<String> listOfProduct = new ArrayList<>();
-        for (Orders order : ordersList) {
-            listOfProduct.add(order.getProductName());
-        }
-        return listOfProduct;
-//        String p = query.getProductName();
-//        return p;
+        var listOfProduct= query.getResultList();
+
+       return listOfProduct;
     }
 
 

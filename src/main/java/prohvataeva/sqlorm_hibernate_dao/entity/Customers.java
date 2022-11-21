@@ -9,7 +9,7 @@ import net.bytebuddy.agent.builder.AgentBuilder;
 import javax.persistence.*;
 import java.util.List;
 
-@Data
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -29,11 +29,20 @@ public class Customers {
     @OneToMany(mappedBy = "customersId", cascade = CascadeType.ALL)
     private List<Orders> ordersList;
 
-    public Customers(int id, String name, String surname, int age, String phoneNumber) {
-        this.id = id;
+    public Customers(String name, String surname, int age, String phoneNumber) {
         this.name = name;
         this.surname = surname;
         this.age = age;
         this.phoneNumber = phoneNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "Customers{" +
+                "name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", age=" + age +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                '}';
     }
 }
