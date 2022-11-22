@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import prohvataeva.sqlorm_hibernate_dao.entity.NameAndSurnameID;
 import prohvataeva.sqlorm_hibernate_dao.entity.Persons;
+import prohvataeva.sqlorm_hibernate_dao.repository.PersonsJPARepository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,8 +16,8 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 public class CommandLineApp implements CommandLineRunner {
-    @PersistenceContext
-    EntityManager entityManager;
+
+    private final PersonsJPARepository personsJPARepository;
     @Override
     @Transactional
     public void run(String... args) throws Exception {
@@ -26,17 +27,20 @@ public class CommandLineApp implements CommandLineRunner {
         NameAndSurnameID threePeople = new NameAndSurnameID("Elena", "Volkova", 28);
         NameAndSurnameID fourPeople = new NameAndSurnameID("Alina", "Perepelova", 18);
         NameAndSurnameID fivePeople = new NameAndSurnameID("Ekaterina", "Prohvataeva", 24);
+        NameAndSurnameID sixPeople = new NameAndSurnameID("Lavrentiy", "Dzuba", 24);
 
-        Persons person1 = new Persons(1, onePeople, "12345", "Moscow");
-        Persons person2 = new Persons(2, twoPeople, "12345", "Moscow");
-        Persons person3 = new Persons(3, threePeople, "12345", "Saransk");
-        Persons person4 = new Persons(4, fourPeople, "12345", "Naro-Fominsk");
-        Persons person5 = new Persons(5, fivePeople, "12345", "Samara");
-        entityManager.persist(person1);
-        entityManager.persist(person2);
-        entityManager.persist(person3);
-        entityManager.persist(person4);
-        entityManager.persist(person5);
+        List<Persons> personsList = new ArrayList<>();
+        personsList.add(new Persons(1, onePeople, "12345", "Moscow"));
+        personsList.add(new Persons(2, twoPeople, "12345", "Moscow"));
+        personsList.add(new Persons(3, threePeople, "12345", "Saransk"));
+        personsList.add(new Persons(4, fourPeople, "12345", "Naro-Fominsk"));
+        personsList.add(new Persons(5, fivePeople, "12345", "Samara"));
+        personsList.add(new Persons(6, sixPeople, "12345", "Samara"));
+
+
+
+        personsJPARepository.saveAll(personsList);
+
 
         }
     }
